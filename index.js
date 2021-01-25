@@ -11,6 +11,7 @@ const tom4 = new Audio("sounds/tom-4.mp3");
 for(var i = 0; i < document.querySelectorAll(".drum").length; i++){
    document.querySelectorAll(".drum")[i].addEventListener('click', function(){
        playSound(this.innerHTML);
+       buttonAnimation(this.innerHTML);
    });
 }
 
@@ -18,6 +19,7 @@ for(var i = 0; i < document.querySelectorAll(".drum").length; i++){
 
 document.addEventListener("keydown", function(){
     playSound(event.key);
+    buttonAnimation(event.key);
 });
 
 
@@ -50,3 +52,10 @@ function playSound(key){
     }
 }
 
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector('.' + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function(){
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
